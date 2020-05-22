@@ -12,20 +12,24 @@ using namespace std;
 class BubbleArray {
     private:
         vector<int> container;
-        int len = 10;
+        int len;
     public:
-        int getLength();
-        void setValues(int val);
+        int setLength(int val);
+        void setValues();
         void bubbleSort();
         void displayArray();
         void swap(int left, int right);
 };
 
-int BubbleArray::getLength(){
+int BubbleArray::setLength(int val){
+    len = val;
     return len;
 }
-void BubbleArray::setValues(int val){
-    container.push_back(val);
+
+void BubbleArray::setValues(){
+    for (int i=0; i < len; i++){
+        container.push_back(rand()%100);
+    }
 }
 
 void BubbleArray::swap(int left, int right){
@@ -39,7 +43,7 @@ void BubbleArray::bubbleSort(){
         for (int j=0; j < len-1; j++){
                 if (container[j] >  container[j+1]){
                     swap(j, j+1);
-                }
+                    }
         }
     }
 }
@@ -53,15 +57,12 @@ void BubbleArray::displayArray(){
 int main(){
 
     BubbleArray vect;
-
-    for (int i=0; i < vect.getLength(); i++){
-        vect.setValues(rand()%100);
-    }
+    vect.setLength(10);
+    vect.setValues();
+    
     cout << "Unsorted" << endl;
     vect.displayArray();
-
     vect.bubbleSort();
-
     cout << endl << "Sorted" << endl;
     vect.displayArray();
     return 0;
